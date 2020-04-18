@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <style>
+    ul{
+        background: #cc6677;
+    }
+    ul li{
+        color: #fff;
+        list-style-type: none;
+    }
+    ul li.specail{
+        background: blue;
+    }
+    </style>
+    
+</head>
+
+<body>
+
+    <!-- Dom操作 -->
+    <ul class="list">
+        <li>one</li>
+        <li class="specail">two</li>
+        <li>three</li>
+        <li>
+            <ul class="sublist">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+    </ul>
+ <script src="jquery.min.js"></script>
+<script>
+     $(function(){
+        $('li').on('click',function(e){
+            //阻止冒泡事件
+            e.stopPropagation()
+            //删除所有被点的兄弟元素
+            // $(this).siblings().remove();
+            //删除某个样式
+            // $(this).removeClass('specail');
+            //隐藏点击的下一个
+            // $(this).next().hide()
+            // 隐藏点击的上一个
+            // $(this).prev().hide()
+            // 为点击元素的兄弟节点添加某个样式
+            // 过滤  filter find()为查找 用于数组类
+            // $('ul').find('.specail').remove();
+            // $('ul').find('li').filter('.specail').hide();
+            // //为点击元素的兄弟节点添加某个类
+            // $(this).siblings().addClass('specail')
+
+            // //点击某个li判断是否拥有某个样式
+            // if($(this).is('.specail') ){
+            //     alert('有这个类样式！')
+            // }else if($(this).not('specail')){
+            //     alert('没有这个类样式！')
+            // }
+
+            //判断父级点击
+            if($(this).parent().is('.sublist')){
+                $(this).hide();
+            }
+        })
+    })
+</script>
+<!-- $('li').first() 获取li的首个 $('li':first)-->
+<!-- $('li').last() 获取li最后一个 -->
+<!-- $('li').show() 显示 -->
+<!-- $('li').hide() 隐藏 -->
+<!-- $('li').eq() 获取第几个 -->
+<!-- $('li').parent() 获取父级节点 -->
+<!-- $('li').eq(0).siblings() 获取兄弟节点 -->
+
+
+</body>
+</html>

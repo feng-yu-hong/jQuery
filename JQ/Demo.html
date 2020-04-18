@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <style>
+    .tab-panels ul{
+        margin: 0;
+        padding: 0;
+    }
+    .tab-panels ul li{
+        list-style-type: none;
+        display: inline-block;/* 融合行内于块级 */
+        background: #cc6677;
+        padding: 3px 10px;
+        border-radius: 10px 10px 0 0;
+        color: #fff;
+        font-weight: 200;
+        cursor:pointer;
+    }
+    .tab-panels ul li:hover{
+        background: #666;
+    }
+    .tab-panels ul li.active{
+        background: #666;
+    }
+    .tab-panels .panel{
+        display: none;
+        background: #c9c9c9;
+        padding: 30px;
+        border-radius:0 0 10px 10px;
+    }
+    .liactive{
+        display: block;
+    }
+    .active{
+        background: #666;
+    }
+    </style>
+    
+</head>
+
+<body>
+    <div class="tab-panels">
+        <ul class="tabs">
+            <li data-panelId='panel1' class="active">panel1</li>
+            <li data-panelId='panel2'>panel2</li>
+            <li data-panelId='panel3'>panel3</li>
+            <li data-panelId='panel4'>panel4</li>
+        </ul>
+        <div class="content">
+            <div id="panel1" class="panel liactive">
+                content1 <br>
+                content1 <br>
+                content1 <br>
+                content1 <br>
+            </div>
+            
+
+            <div id="panel2" class="panel">
+                content2 <br>
+                content2 <br>
+                content2 <br>
+                content2 <br>
+            </div>
+
+            <div id="panel3" class="panel">
+                content3 <br>
+                content3 <br>
+                content3 <br>
+                content3 <br>
+            </div>
+
+            <div id="panel4" class="panel">
+                content4 <br>
+                content4 <br>
+                content4 <br>
+                content4 <br>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script>
+     $(function(){
+        //1.为li添加点击事件
+        $('.tabs li').on('click',function(){
+        //解决按钮活动状态
+        // $('.tab-panels ul li.active').removeClass('active');
+        // console.log('123')
+        //2.找到需要展示的的panel(给li加一个自定义属性data-panelId='panel1'拼接)
+        var panelToshow= $(this).attr('data-panelId');
+        // $('#'+ panelToshow).siblings().removeClass('liactive')
+        // console.log($('#'+ panelToshow).siblings().removeClass('liactive'))
+        $('#'+ panelToshow).slideDown(300,function(){
+            $(this).addClass('liactive').siblings().removeClass('liactive')
+            // console.log( $(this).addClass('liactive').siblings().removeClass('liactive'))
+            console.log($('#panel1'))
+            console.log($('#panel2'))
+            console.log($('#panel3'))
+            console.log($('#panel4'))
+        })
+        // console.log(panelToshow)
+        // $(this).addClass('active');
+        // console.log(panelToshow)
+
+        //3.隐藏当前的panel(干老立新)
+        // $('.tab-panels .panel.active').slideUp(300,function(){
+        //     $(this).addClass('active').siblings().removeClass('active')
+        // }));
+
+        //3.1干掉原来的panel样式
+        //3.2让新的panel展示出来
+        });
+        
+        });
+        //让当前点击的按钮成为活跃状态
+
+    </script>
+
+
+</body>
+
+</html>
